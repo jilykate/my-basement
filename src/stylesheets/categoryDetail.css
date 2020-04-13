@@ -1,0 +1,36 @@
+.bs-back-wrapper {
+    display: flex;
+    padding: 20px 10px;
+}
+
+.bs-category-name {
+    font-weight: bold;
+    text-align: center;
+}
+
+.bs-item-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.bs-item {
+    display: flex;
+}
+
+.bs-item-icon {
+    flex-grow: 1;
+}
+
+.bs-item-name {
+    flex-grow: 3;
+}
+
+.bs-item-qty {
+    flex-grow: 1;
+}
+
+.bs-item-actions {
+    flex-grow: 3;
+    text-align: center;
+}

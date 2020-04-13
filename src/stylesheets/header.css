@@ -1,0 +1,17 @@
+.bs-header {
+    display: flex;
+    border-bottom: 1px solid #666;
+    padding: 30px;
+}
+
+.bs-header-icon {
+    font-size: 2em;
+    flex-grow: 1;
+}
+
+.bs-header-text {
+    font-size: 2em;
+    color: #333;
+    flex-grow: 5;
+    text-align: center;
+}

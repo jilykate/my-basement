@@ -1,0 +1,22 @@
+.bs-category-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.bs-category {
+    display: flex;
+    padding: 10px 10px;
+    margin: 10px;
+    border: 1px solid #999;
+}
+
+.bs-category-icon {
+    flex-grow: 1;
+}
+
+.bs-category-name {
+    flex-grow: 5;
+    text-align: center;
+}
