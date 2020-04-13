@@ -7,7 +7,7 @@ import myBasementApp from './reducers';
 import Root from './root';
 import { render } from 'react-dom';
 
-import initialState from './initStates/categories';
+import initialState from './initialState';
 console.log(initialState);
 
 const store = createStore(myBasementApp, initialState);
