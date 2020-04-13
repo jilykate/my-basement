@@ -1,10 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    Link,
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { faBreadSlice, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import '../stylesheets/categoryDetail.css';
 
 export class ProductDetail extends React.Component {
@@ -27,5 +25,3 @@ export class ProductDetail extends React.Component {
     }
     
 }
-
-// export default categoryDetail;

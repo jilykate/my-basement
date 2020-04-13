@@ -3,12 +3,11 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    useParams,
-    Link 
+    useParams, 
 } from "react-router-dom";
 import CategoryList from './views/categoryList';
-import  CategoryDetail from './views/categoryDetail';
 import {ProductDetail} from './views/productDetail';
+import CategoryContainer from './containers/categoryContainer';
 
 
 export default function MyBasementRouter() {
@@ -37,7 +36,7 @@ export default function MyBasementRouter() {
   function CategoryDetailPage() {
     let { categoryName } = useParams();
     let detailPageProps = {categoryName};
-    return <CategoryDetail {...detailPageProps} />;
+    return <CategoryContainer {...detailPageProps} />
   }
 
   function ProductDetailPage() {

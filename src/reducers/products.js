@@ -1,19 +1,19 @@
 const products = (state = [], action) => {
-    switch (action.type) {
-      case 'EDIT_PRODUCT':
-        return [
-          ...state,
-          {
-            id: action.id,
-            desc: action.desc,
-            name: action.name,
-            expiredTime: action.expiredTime,
-          }
-        ]
-      default:
-        return state
-    }
+  console.log('====products reducer===');
+  console.log(action.id, action.qty);
+  switch (action.type) {
+    case 'ADD_PRODUCT':
+      {
+          return state.map((product) => {
+            if (product.id === action.id) {
+              product.qty = action.qty;
+            }
+            return product;
+          })
+      }
+    default:
+      return state
   }
-  
-  export default products
-  
+}
+
+export default products;

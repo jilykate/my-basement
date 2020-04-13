@@ -1,14 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams,
-    useRouteMatch
-  } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { faBreadSlice, faCocktail, faHandSparkles, faBath, faBaby, faCat } from '@fortawesome/free-solid-svg-icons'
 import '../stylesheets/categoryList.css';
 
