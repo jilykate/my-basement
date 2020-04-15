@@ -22,7 +22,7 @@ export default class CategoryDetail extends React.Component {
             return (
                 <li className="bs-item" key={product.id}>
                     <span className="bs-item-name">
-                        <Link to={`/product/` + product.name}>
+                        <Link to={`/product/` + product.name} className="bs-item-link">
                             {product.name}
                         </Link>
                     </span>
@@ -74,7 +74,7 @@ export default class CategoryDetail extends React.Component {
                         event.preventDefault();
                         const data = new FormData(event.target);
                         console.log(data.get('productname'));
-                        this.props.addNewProduct(data.get('productname').toLowerCase().replace(' ', '_'));
+                        this.props.addNewProduct(data.get('productname').toLowerCase());
                         event.target.reset();
                     }}>
                         <input type="text" name="productname" className="addProductInput"/>

@@ -22,11 +22,11 @@ const products = (state = [], action) => {
         if (state.filter((product) => product.name === action.name).length) {
           return state;
         }
-        
+
         return state.concat([{
           id: (new Date()).getTime(),
           name: action.name,
-          url_string: action.name,
+          url_string: action.name.replace(' ', '_'),
           qty: 0,
         }]);
     }

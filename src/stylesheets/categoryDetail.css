@@ -52,3 +52,7 @@
 .addProductButton {
     flex-grow: 1;
 }
+
+.bs-item-link {
+    text-decoration: none;
+}
