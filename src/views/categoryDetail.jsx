@@ -6,6 +6,7 @@ import {
 
 import { faArrowLeft, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import '../stylesheets/categoryDetail.css';
+import { emptyStatement } from '@babel/types';
 
 export default class CategoryDetail extends React.Component {
     constructor(props) {
@@ -66,6 +67,22 @@ export default class CategoryDetail extends React.Component {
                 <ul className="bs-item-list">
                     {this.renderProducts()}
                 </ul>
+                <div className="bs-add-product-wrapper">
+                    <form 
+                    className="bs-add-product-form"
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        const data = new FormData(event.target);
+                        console.log(data.get('productname'));
+                        this.props.addNewProduct(data.get('productname').toLowerCase().replace(' ', '_'));
+                        event.target.reset();
+                    }}>
+                        <input type="text" name="productname" className="addProductInput"/>
+                        <button type="submit" className="addProductButton">
+                            add
+                        </button>
+                    </form>
+                </div>
             </div>
         );
     }

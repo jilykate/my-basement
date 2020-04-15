@@ -16,6 +16,21 @@ const products = (state = [], action) => {
     {
         return state.filter((product)=> product.id !== action.id);
     }
+
+    case 'ADD_NEW_PRODUCT':
+    {
+        if (state.filter((product) => product.name === action.name).length) {
+          return state;
+        }
+        
+        return state.concat([{
+          id: (new Date()).getTime(),
+          name: action.name,
+          url_string: action.name,
+          qty: 0,
+        }]);
+    }
+
     default:
       return state
   }

@@ -37,3 +37,18 @@
     text-align: center;
     justify-content: space-around;
 }
+
+.bs-add-product-form {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.addProductInput {
+    flex-grow: 3;
+    margin-right: 10px;
+}
+
+.addProductButton {
+    flex-grow: 1;
+}

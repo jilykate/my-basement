@@ -30,5 +30,10 @@ export const addProduct = (id, qty) => ({
   export const addCategory = (name) => ({
         type: 'ADD_CATEGORY',
   });
+
+  export const addNewProduct = (name) => ({
+      type: 'ADD_NEW_PRODUCT',
+      name,
+  })
   
   
