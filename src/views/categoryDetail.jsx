@@ -27,12 +27,15 @@ export default class CategoryDetail extends React.Component {
                     <div className="bs-item-actions">
                         <button 
                             type="button" 
-                            onClick={()=>{ 
-                                return this.props.addProduct(product.id, product.qty);
-                            }}>
+                            onClick={()=>this.props.addProduct(product.id, product.qty)}>
                                 +
                             </button>
-                        <button type="button">-</button>
+                        <button 
+                            type="button"
+                            onClick={() => this.props.removeProduct(product.id, product.qty)}
+                        >
+                                -
+                            </button>
                     </div>
                 </li>
             )

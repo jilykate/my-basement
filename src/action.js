@@ -11,5 +11,19 @@ export const addProduct = (id, qty) => ({
     name,
     expiredTime,
   });
+
+  export const removeProduct = (id, qty) => ({
+      type: 'REMOVE_PRODUCT',
+      id,
+      qty: --qty,
+  });
+
+  export const removeCategory = (id) => ({
+      type: 'REMOVE_CATEGORY',
+  });
+
+  export const addCategory = (name) => ({
+        type: 'ADD_CATEGORY',
+  });
   
   

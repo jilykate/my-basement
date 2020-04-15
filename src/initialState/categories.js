@@ -1,26 +1,38 @@
 export default [
     {
         id: 0,
-        name: 'food',
+        name: 'Food',
+        url_string: 'food',
+        icon_string: 'faBreadSlice',
     },
     {
         id: 1,
-        name: 'drinks',
+        name: 'Drinks',
+        url_string: 'drinks',
+        icon_string: 'faCocktail',
     },
     {
         id: 2,
-        name: 'baby care',
+        name: 'Baby care',
+        url_string: 'baby_care',
+        icon_string: 'faBaby',
     },
     {
         id: 3,
-        name: 'personal care',
+        name: 'Personal care',
+        url_string: 'personal_care',
+        icon_string: 'faBath',
     },
     {
         id: 4,
-        name: 'house care',
+        name: 'House care',
+        url_string: 'house_care',
+        icon_string: 'faHandSparkles',
     },
     {
         id: 5,
-        name: 'others',
+        name: 'Others',
+        url_string: 'others',
+        icon_string: 'faCat',
     }
 ];

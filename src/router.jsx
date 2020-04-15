@@ -5,7 +5,7 @@ import {
     Route,
     useParams, 
 } from "react-router-dom";
-import CategoryList from './views/categoryList';
+import CategoryListContainer from './containers/categoryListContainer';
 import {ProductDetail} from './views/productDetail';
 import CategoryContainer from './containers/categoryContainer';
 
@@ -14,16 +14,9 @@ export default function MyBasementRouter() {
     return (
       <Router>
         <div>
-          {/*
-            A <Switch> looks through all its children <Route>
-            elements and renders the first one whose path
-            matches the current URL. Use a <Switch> any time
-            you have multiple routes, but you want only one
-            of them to render at a time
-          */}
           <Switch>
             <Route exact path="/">
-              <CategoryList />
+              <CategoryListContainer />
             </Route>
             <Route path="/category/:categoryName" children={<CategoryDetailPage />} />
             <Route path="/product/:productName" children={<ProductDetailPage />} />

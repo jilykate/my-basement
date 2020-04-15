@@ -4,61 +4,35 @@ import { Link } from "react-router-dom";
 import { faBreadSlice, faCocktail, faHandSparkles, faBath, faBaby, faCat } from '@fortawesome/free-solid-svg-icons'
 import '../stylesheets/categoryList.css';
 
-function CategoryList() {
-  return (
-    <div className="bs-content-wrapper">
-        <ul className="bs-category-list">
-            <li>
-                <Link to="/category/food" className="bs-category">
-                    <span className="bs-category-icon">
-                        <FontAwesomeIcon icon={faBreadSlice} />
-                    </span>
-                    <span className="bs-category-name">Food</span>
-                </Link>
-            </li>
-            <li>
-                <Link to="/category/drinks" className="bs-category">
-                    <span className="bs-category-icon">
-                        <FontAwesomeIcon icon={faCocktail} />
-                    </span>
-                    <span className="bs-category-name">Drinks</span>
-                </Link>
-            </li>
-            <li>
-                <Link to="/category/babycare" className="bs-category">
-                    <span className="bs-category-icon">
-                        <FontAwesomeIcon icon={faBaby} />
-                    </span>
-                    <span className="bs-category-name">Baby Care</span>
-                </Link>
-            </li>
-            <li>
-                <Link to="/category/personalcare" className="bs-category">
-                    <span className="bs-category-icon">
-                        <FontAwesomeIcon icon={faBath} />
-                    </span>
-                    <span className="bs-category-name">Personal Care</span>
-                </Link>
-            </li>
-            <li>
-                <Link to="/category/housecare" className="bs-category">
-                    <span className="bs-category-icon">
-                        <FontAwesomeIcon icon={faHandSparkles} />
-                    </span>
-                    <span className="bs-category-name">House Care</span>
-                </Link>
-            </li>
-            <li>
-                <Link to="/category/others" className="bs-category">
-                    <span className="bs-category-icon">
-                        <FontAwesomeIcon icon={faCat} />
-                    </span>
-                    <span className="bs-category-name">Others</span>
-                </Link>
-            </li>
-        </ul>
-    </div>
-  );
-}
+export default class CategoryList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderListItem = this.renderListItem.bind(this);
+    }
 
-export default CategoryList;
+    renderListItem(item) {
+        return (
+            <li key={"category_" + item.id}>
+                <Link to={"/category/" + item.url_string} className="bs-category">
+                    <span className="bs-category-icon">
+                        <FontAwesomeIcon icon={item.icon_string} />
+                    </span>
+                    <span className="bs-category-name">{item.name}</span>
+                </Link>
+            </li>
+        );
+    }
+
+    render () {
+        const {categories} = this.props;
+        return (
+            <div className="bs-content-wrapper">
+                <ul className="bs-category-list">
+                    {
+                        categories.map((category) => this.renderListItem(category))
+                    }
+                </ul>
+            </div>
+        );
+    }
+}
