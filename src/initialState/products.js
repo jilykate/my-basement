@@ -8,7 +8,7 @@ export default [
     },
     {
         id: 1,
-        name: 'banana',
+        name: 'bananas',
         qty: 1,
         expiredTime: '2020-03-01',
         desc: 'this is a banana'

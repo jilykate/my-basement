@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addProduct, removeProduct } from '../action'
+import { addProduct, removeProduct, deleteProduct } from '../action'
 import CategoryDetail from '../views/categoryDetail';
 
 const getVisibleProducts = (products) => {
@@ -21,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
     addProduct: (id, qty) => dispatch(addProduct(id, qty)),
     removeProduct: (id, qty) => dispatch(removeProduct(id,qty)),
+    deleteProduct: (id) => dispatch(deleteProduct(id)),
 });
 
 export default connect(

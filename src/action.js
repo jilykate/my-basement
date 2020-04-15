@@ -18,6 +18,11 @@ export const addProduct = (id, qty) => ({
       qty: --qty,
   });
 
+  export const deleteProduct = (id) => ({
+    type: 'DELETE_PRODUCT',
+    id,
+  });
+
   export const removeCategory = (id) => ({
       type: 'REMOVE_CATEGORY',
   });

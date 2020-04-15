@@ -1,6 +1,5 @@
 const products = (state = [], action) => {
   console.log('====products reducer===');
-  console.log(action.id, action.qty);
   switch (action.type) {
     case 'ADD_PRODUCT':
     case 'REMOVE_PRODUCT':
@@ -12,7 +11,11 @@ const products = (state = [], action) => {
             return product;
           })
       }
-      break;
+
+    case 'DELETE_PRODUCT': 
+    {
+        return state.filter((product)=> product.id !== action.id);
+    }
     default:
       return state
   }

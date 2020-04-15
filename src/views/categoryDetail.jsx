@@ -4,7 +4,7 @@ import {
     Link,
   } from "react-router-dom";
 
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import '../stylesheets/categoryDetail.css';
 
 export default class CategoryDetail extends React.Component {
@@ -15,6 +15,8 @@ export default class CategoryDetail extends React.Component {
 
     renderProducts() {
         const {products} = this.props;
+        console.log('====renderProducts====');
+        console.log(products);
         return products.map(product => {
             return (
                 <li className="bs-item" key={product.id}>
@@ -27,14 +29,22 @@ export default class CategoryDetail extends React.Component {
                     <div className="bs-item-actions">
                         <button 
                             type="button" 
+                            className="bs-item-button"
                             onClick={()=>this.props.addProduct(product.id, product.qty)}>
                                 +
                             </button>
                         <button 
                             type="button"
+                            className="bs-item-button"
                             onClick={() => this.props.removeProduct(product.id, product.qty)}
                         >
                                 -
+                        </button>
+                        <button 
+                            type="button" 
+                            className="bs-item-button"
+                            onClick={()=>this.props.deleteProduct(product.id)}>
+                                <FontAwesomeIcon icon={faTrashAlt} />
                             </button>
                     </div>
                 </li>

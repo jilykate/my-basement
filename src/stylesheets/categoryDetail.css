@@ -16,6 +16,7 @@
 
 .bs-item {
     display: flex;
+    padding: 5px;
 }
 
 .bs-item-icon {
@@ -23,14 +24,16 @@
 }
 
 .bs-item-name {
-    flex-grow: 3;
+    flex-basis: 35%;
 }
 
 .bs-item-qty {
-    flex-grow: 1;
+    flex-basis: 15%;
 }
 
 .bs-item-actions {
-    flex-grow: 3;
+    display: flex;
+    flex-basis: 50%;
     text-align: center;
+    justify-content: space-around;
 }
