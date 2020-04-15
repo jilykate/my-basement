@@ -1,7 +1,9 @@
 import categoryInitialState from './categories';
-import productInitialState from './products';
+import productsInitialState from './products';
+import productInitialState from './product';
 
 export default {
     categories: categoryInitialState,
-    products: productInitialState,
+    products: productsInitialState,
+    product: productInitialState
 };

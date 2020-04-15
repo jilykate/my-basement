@@ -6,8 +6,8 @@ import {
     useParams, 
 } from "react-router-dom";
 import CategoryListContainer from './containers/categoryListContainer';
-import {ProductDetail} from './views/productDetail';
 import CategoryContainer from './containers/categoryContainer';
+import ProductContainer from './containers/productContainer';
 
 
 export default function MyBasementRouter() {
@@ -35,5 +35,5 @@ export default function MyBasementRouter() {
   function ProductDetailPage() {
     let { productName } = useParams();
     let detailPageProps = {productName};
-    return <ProductDetail {...detailPageProps} />;
+    return <ProductContainer {...detailPageProps} />;
   }
