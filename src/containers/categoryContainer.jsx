@@ -3,7 +3,8 @@ import {
   addProduct, 
   removeProduct, 
   deleteProduct, 
-  addNewProduct 
+  addNewProduct,
+  toggleMoreFields,
 } from '../action'
 import CategoryDetail from '../views/categoryDetail';
 
@@ -20,14 +21,13 @@ const mapStateToProps = (state, ownProps) => {
   return {
     products: getVisibleProducts(state.products),
     categoryName: ownProps.categoryName,
-  }
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
     addProduct: (id, qty) => dispatch(addProduct(id, qty)),
     removeProduct: (id, qty) => dispatch(removeProduct(id,qty)),
     deleteProduct: (id) => dispatch(deleteProduct(id)),
-    addNewProduct: (name) => dispatch(addNewProduct(name)),
 });
 
 export default connect(

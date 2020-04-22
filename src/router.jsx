@@ -8,6 +8,7 @@ import {
 import CategoryListContainer from './containers/categoryListContainer';
 import CategoryContainer from './containers/categoryContainer';
 import ProductContainer from './containers/productContainer';
+import AddNewProductFormContainer from './containers/addNewProductFormContainer';
 
 
 export default function MyBasementRouter() {
@@ -29,7 +30,12 @@ export default function MyBasementRouter() {
   function CategoryDetailPage() {
     let { categoryName } = useParams();
     let detailPageProps = {categoryName};
-    return <CategoryContainer {...detailPageProps} />
+    return (
+      <div>
+        <CategoryContainer {...detailPageProps} />
+        <AddNewProductFormContainer />
+      </div>
+    );
   }
 
   function ProductDetailPage() {

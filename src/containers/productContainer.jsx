@@ -1,36 +1,21 @@
 import { connect } from 'react-redux'
 import { 
-  addProduct, 
-  removeProduct, 
-  deleteProduct, 
-  addNewProduct 
+  editProduct
 } from '../action'
-import productDetail from '../views/productDetail';
-
-const getVisibleProducts = (products) => {
-    //TODO apply is_expired, is_deleted filter here.
-    console.log('===getVisibleProducts===');
-    console.log(products);
-    return products;
-}
+import ProductDetail from '../views/productDetail';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('====mapStateToProps===');
-  console.log(state);
   return {
-    product: getVisibleProducts(state.product),
+    product: state.product,
     productName: ownProps.productName,
   }
 };
 
 const mapDispatchToProps = dispatch => ({
-    addProduct: (id, qty) => dispatch(addProduct(id, qty)),
-    removeProduct: (id, qty) => dispatch(removeProduct(id,qty)),
-    deleteProduct: (id) => dispatch(deleteProduct(id)),
-    addNewProduct: (name) => dispatch(addNewProduct(name)),
+    editProduct: (id, productData) => dispatch(editProduct(id, productData)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(productDetail)
+)(ProductDetail)

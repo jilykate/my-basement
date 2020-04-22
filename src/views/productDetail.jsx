@@ -25,7 +25,7 @@ export default class ProductDetail extends React.Component {
                     <li>
                         name: {product.name}
                     </li>
-                    <li>expire date: {product.expire_date}</li>
+                    <li>expire date: {product.expiredDate}</li>
                     <li>description: {product.desc}</li>
                     <li>qty: {product.qty}</li>
                     <li>brand: {product.brand}</li>

@@ -4,12 +4,9 @@ export const addProduct = (id, qty) => ({
     qty: ++qty,
   });
   
-  export const editProduct = (id, desc, name, expiredTime) => ({
+  export const editProduct = (id, productData) => ({
     type: 'EDIT_PRODUCT',
-    id,
-    desc,
-    name,
-    expiredTime,
+    productData,
   });
 
   export const removeProduct = (id, qty) => ({
@@ -31,9 +28,13 @@ export const addProduct = (id, qty) => ({
         type: 'ADD_CATEGORY',
   });
 
-  export const addNewProduct = (name) => ({
+  export const addNewProduct = (productData) => ({
       type: 'ADD_NEW_PRODUCT',
-      name,
-  })
+      productData,
+  });
+
+  export const toggleMoreFields = () => ({
+    type: 'TOGGLE_MORE_FIELDS',
+  });
   
   

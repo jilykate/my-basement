@@ -8,7 +8,13 @@ import Root from './root';
 import { render } from 'react-dom';
 
 import initialState from './initialState';
+import * as localDB from './database/localDB';
+
 console.log(initialState);
+
+localDB.getAllCategories().then(data => {
+    console.log(data);
+})
 
 const store = createStore(myBasementApp, initialState);
 render(<Root store={ store } />, document.getElementById('root'))
