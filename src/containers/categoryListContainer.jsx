@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addCategory, removeCategory } from '../action'
+import { addCategory, removeCategory, loadCategories } from '../action'
 import CategoryList from '../views/categoryList';
 
 const getVisibleCategories = (categories) => {
@@ -18,6 +18,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
     addCategory: (id, qty) => dispatch(addCategory(id, qty)),
     removeCategory: (id, qty) => dispatch(removeCategory(id,qty)),
+    loadCategories: (categories) => dispatch(loadCategories(categories)),
 });
 
 export default connect(

@@ -9,7 +9,11 @@ const categories = (state = [], action) => {
             id: action.id,
             qty: action.qty,
           }
-        ]
+        ];
+
+      case 'LOAD_CATEGORIES':
+        return action.categories;
+  
       default:
         return state
     }

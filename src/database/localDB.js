@@ -19,35 +19,31 @@ function onupgradeneeded (myBasementDB) {
         productOS.createIndex('category', 'category', {unique: false});
     }
 
-    // myBasementDB.transation.oncomplete = () => {
-    //     var customerObjectStore = myBasementDB.transaction("category", "readwrite").objectStore("category");
-        categoriesOS.put({
-            name: 'Food',
-            url_string: 'food',
-        });
-        categoriesOS.put({
-            name: 'Drinks',
-            url_string: 'drinks',
-        });
-        categoriesOS.put({
-            name: 'Baby care',
-            url_string: 'baby_care',
-        });
-        categoriesOS.put({
-            name: 'Personal care',
-            url_string: 'personal_care',
-        });
-        categoriesOS.put({
-            name: 'House care',
-            url_string: 'house_care',
-        });
-        categoriesOS.put({
-            name: 'Others',
-            url_string: 'others',
-        });
-
-    //     console.log('finished init local indexed db');
-    // }
+    
+    categoriesOS.put({
+        name: 'Food',
+        url_string: 'food',
+    });
+    categoriesOS.put({
+        name: 'Drinks',
+        url_string: 'drinks',
+    });
+    categoriesOS.put({
+        name: 'Baby care',
+        url_string: 'baby_care',
+    });
+    categoriesOS.put({
+        name: 'Personal care',
+        url_string: 'personal_care',
+    });
+    categoriesOS.put({
+        name: 'House care',
+        url_string: 'house_care',
+    });
+    categoriesOS.put({
+        name: 'Others',
+        url_string: 'others',
+    });
 };   
 
 

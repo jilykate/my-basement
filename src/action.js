@@ -1,3 +1,5 @@
+import categories from "./initialState/categories";
+
 export const addProduct = (id, qty) => ({
     type: 'ADD_PRODUCT',
     id,
@@ -37,4 +39,8 @@ export const addProduct = (id, qty) => ({
     type: 'TOGGLE_MORE_FIELDS',
   });
   
+  export const loadCategories = (categories) => ({
+    type: 'LOAD_CATEGORIES',
+    categories,
+  });
   
