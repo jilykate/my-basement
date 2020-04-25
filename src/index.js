@@ -12,7 +12,7 @@ import * as localDB from './database/localDB';
 
 console.log(initialState);
 
-localDB.getAllCategories().then(data => {
+localDB.getProductByCategory('food').then(data => {
     console.log(data);
 })
 

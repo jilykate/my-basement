@@ -33,7 +33,7 @@ export default function MyBasementRouter() {
     return (
       <div>
         <CategoryContainer {...detailPageProps} />
-        <AddNewProductFormContainer />
+        <AddNewProductFormContainer {...detailPageProps}/>
       </div>
     );
   }

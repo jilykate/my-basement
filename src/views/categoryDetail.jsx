@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as LocalDB from '../database/localDB';
 import {
     Link,
   } from "react-router-dom";
@@ -11,6 +12,13 @@ export default class CategoryDetail extends React.Component {
     constructor(props) {
         super(props);
         this.renderProducts = this.renderProducts.bind(this);
+    }
+
+    componentDidMount() {
+        LocalDB.getProductByCategory(this.props.categoryName).then(products => {
+            this.props.loadProducts(products);
+            console.log('products load from db');
+        });
     }
 
     renderProducts() {

@@ -21,7 +21,8 @@ export default class AddNewProductForm extends React.Component {
             brand: data.get('brand'),
             expiredDate: data.get('expiredDate') || '',
             desc: data.get('desc') || '',
-            qty: data.get('qty') || 1,
+            qty: parseInt(data.get('qty'), 10) || 1,
+            category: this.props.categoryName,
         };
         this.props.addNewProduct(productData);
         event.target.reset();

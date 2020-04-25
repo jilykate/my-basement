@@ -34,6 +34,10 @@ const products = (state = [], action) => {
         }]);
     }
 
+    case 'LOAD_PRODUCTS': {
+      return action.products;
+    }
+
     default:
       return state
   }

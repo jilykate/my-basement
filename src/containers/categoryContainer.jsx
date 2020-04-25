@@ -1,10 +1,10 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import * as LocalDB from '../database/localDB';
 import { 
   addProduct, 
   removeProduct, 
   deleteProduct, 
-  addNewProduct,
-  toggleMoreFields,
+  loadProducts,
 } from '../action'
 import CategoryDetail from '../views/categoryDetail';
 
@@ -25,9 +25,12 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    addProduct: (id, qty) => dispatch(addProduct(id, qty)),
+    addProduct: (id, qty) => {
+      dispatch(addProduct(id, qty))
+    },
     removeProduct: (id, qty) => dispatch(removeProduct(id,qty)),
     deleteProduct: (id) => dispatch(deleteProduct(id)),
+    loadProducts: (products) => dispatch(loadProducts(products)),
 });
 
 export default connect(

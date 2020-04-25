@@ -44,15 +44,25 @@ function onupgradeneeded (myBasementDB) {
         name: 'Others',
         url_string: 'others',
     });
+
+    productOS.put({
+        name: 'apple',
+        qty: 5,
+        expiredTime: '2020-01-01',
+        desc: 'this is an apple',
+        category: 'food',
+    });
+
+    productOS.put({
+        name: 'beer',
+        qty: 50,
+        expiredTime: '2020-03-01',
+        desc: 'this is a beer',
+        category: 'drinks',
+    });
 };   
 
-
-// async function initLocalDB () {
-//     let dbRequest = await idb.open('mybasement-db', 1, (myBasementDB) => onupgradeneeded);
-//     return dbRequest;
-// }
-
-export const addProduct = async (data)=> {
+export const addNewProduct = async (data)=> {
     let dbRequest = await openDB('mybasement-db', 1, {
         upgrade(db) { 
             onupgradeneeded(db);
@@ -76,7 +86,6 @@ export const getAllProducts = async () => {
     
     let allProducts = await store.getAll();
     dbRequest.close();
-    console.log('====all products====');
     return allProducts;
 }
 
@@ -92,8 +101,22 @@ export const getAllCategories = async () => {
     
     let allCategories = await store.getAll();
     dbRequest.close();
-    console.log('====all categories====');
     return allCategories;
+}
+
+export const getProductByCategory = async (cateogry) => {
+    let dbRequest = await openDB('mybasement-db', 1, {
+        upgrade(db) { 
+            onupgradeneeded(db);
+        }
+    });
+
+    let tx = dbRequest.transaction('product', 'readwrite');
+    let store = tx.objectStore('product');
+
+    let products = await store.index('category').getAll(cateogry);
+    dbRequest.close();
+    return products;
 }
 
 

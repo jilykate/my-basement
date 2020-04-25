@@ -43,4 +43,9 @@ export const addProduct = (id, qty) => ({
     type: 'LOAD_CATEGORIES',
     categories,
   });
+
+  export const loadProducts = (products) => ({
+    type: 'LOAD_PRODUCTS',
+    products,
+  });
   
