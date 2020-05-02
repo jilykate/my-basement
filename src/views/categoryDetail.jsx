@@ -61,12 +61,12 @@ export default class CategoryDetail extends React.Component {
     render() {
         return (
             <div className="bs-content-wrapper">
-                <div className="bs-back-wrapper">
-                    <Link to={`/`}>
-                        <FontAwesomeIcon icon={faArrowLeft} />
-                    </Link>
+                <a className="bs-back-wrapper" onClick={(event) => {
+                    window.history.back();
+                }}>
+                    <FontAwesomeIcon icon={faArrowLeft} />
                     <span className="bs-category-name">{this.props.categoryName}</span>
-                </div>
+                </a>
                 <ul className="bs-item-list">
                     {this.renderProducts()}
                 </ul>

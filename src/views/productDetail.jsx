@@ -18,12 +18,13 @@ export default class ProductDetail extends React.Component {
         const {product} = this.props;
         return (
             <div className="bs-content-wrapper">
-                <div className="bs-back-wrapper">
-                    <Link to={`/`}>
-                        <FontAwesomeIcon icon={faArrowLeft} />
-                    </Link>
+                <a className="bs-back-wrapper" onClick={(event) => {
+                    console.log('goback');
+                    window.history.back();
+                }}>
+                    <FontAwesomeIcon icon={faArrowLeft} />
                     <span className="bs-category-name">{product.name}</span>
-                </div>
+                </a>
                 this is info about {product.name}
                 <ul className="bs-product-detail">
                     <li>

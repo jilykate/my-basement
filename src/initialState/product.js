@@ -1,6 +1,6 @@
 export default {
     name: '',
-    expiredDate: (new Date).toLocaleDateString(),
+    expiredDate: '',
     desc: '',
     qty: 0,
     brand: '',

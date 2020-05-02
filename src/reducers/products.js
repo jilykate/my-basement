@@ -22,7 +22,6 @@ const products = (state = [], action) => {
         }
 
         return state.concat([{
-          id: (new Date()).getTime(),
           name: action.productData.name,
           brand: action.productData.brand,
           url_string: action.productData.name.replace(' ', '_'),
