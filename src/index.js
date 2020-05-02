@@ -10,14 +10,12 @@ import { render } from 'react-dom';
 import initialState from './initialState';
 import * as localDB from './database/localDB';
 
-console.log(initialState);
-
 localDB.getProductByCategory('food').then(data => {
     console.log(data);
 })
 
 const store = createStore(myBasementApp, initialState);
-render(<Root store={ store } />, document.getElementById('root'))
+render(<Root store={ store } />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -12,10 +12,15 @@ export default class CategoryList extends React.Component {
     }
 
     componentDidMount() {
+        console.log('categorylist component did mount');
         localDB.getAllCategories().then(categories => {
             console.log(categories);
             this.props.loadCategories(categories);
         });
+    }
+
+    componentWillUnmount() {
+        console.log('categoryList component will unmount');
     }
 
     renderListItem(item) {

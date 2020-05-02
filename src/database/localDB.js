@@ -70,9 +70,10 @@ export const addNewProduct = async (data)=> {
     });
     let tx = dbRequest.transaction('product', 'readwrite');
     let store = tx.objectStore('product');
-    await store.put(data);
+    let productId = await store.put(data);
     await tx.complete;
     dbRequest.close();
+    return productId;
 }
 
 export const getAllProducts = async () => {
@@ -118,6 +119,57 @@ export const getProductByCategory = async (cateogry) => {
     dbRequest.close();
     return products;
 }
+
+export const getProductById = async (id) => {
+    let dbRequest = await openDB('mybasement-db', 1, {
+        upgrade(db) { 
+            onupgradeneeded(db);
+        }
+    });
+
+    let tx = dbRequest.transaction('product', 'readwrite');
+    let store = tx.objectStore('product');
+
+    let product = await store.get(parseInt(id, 10));
+    dbRequest.close();
+    return product;
+}
+
+export const editProductQty = async (productObj, qty) => {
+    let dbRequest = await openDB('mybasement-db', 1, {
+        upgrade(db) { 
+            onupgradeneeded(db);
+        }
+    });
+
+    let tx = dbRequest.transaction('product', 'readwrite');
+    let store = tx.objectStore('product');
+
+    let product = await store.index('name').get(productObj.name);
+    if (!product) {
+        dbRequest.close();
+        return null;
+    }
+    let updatedProduct = Object.assign(product, {qty: qty});
+    await store.put(updatedProduct);
+    dbRequest.close();
+    return updatedProduct;
+}
+
+export const deleteProduct = async (productObj) => {
+    let dbRequest = await openDB('mybasement-db', 1, {
+        upgrade(db) { 
+            onupgradeneeded(db);
+        }
+    });
+
+    let tx = dbRequest.transaction('product', 'readwrite');
+    let store = tx.objectStore('product');
+    
+    await store.delete(productObj.id);
+    dbRequest.close();
+    return productObj;
+};
 
 
 

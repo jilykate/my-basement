@@ -1,8 +1,6 @@
 const products = (state = [], action) => {
-  console.log('====products reducer===');
   switch (action.type) {
-    case 'ADD_PRODUCT':
-    case 'REMOVE_PRODUCT':
+    case 'EDIT_PRODUCT_QTY':
       {
           return state.map((product) => {
             if (product.id === action.id) {

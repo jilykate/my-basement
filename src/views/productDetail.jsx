@@ -8,7 +8,11 @@ import '../stylesheets/categoryDetail.css';
 export default class ProductDetail extends React.Component {
     constructor(props) {
         super(props);
-      }
+    }
+
+    componentDidMount() {
+        this.props.loadProduct(this.props.productId);
+    }
 
     render() {
         const {product} = this.props;
@@ -18,9 +22,9 @@ export default class ProductDetail extends React.Component {
                     <Link to={`/`}>
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </Link>
-                    <span className="bs-category-name">{this.props.productName}</span>
+                    <span className="bs-category-name">{product.name}</span>
                 </div>
-                this is info about {this.props.productName}
+                this is info about {product.name}
                 <ul className="bs-product-detail">
                     <li>
                         name: {product.name}

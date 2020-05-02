@@ -1,20 +1,14 @@
 import categories from "./initialState/categories";
 
-export const addProduct = (id, qty) => ({
-    type: 'ADD_PRODUCT',
+  export const editProductQty = (id, qty) => ({
+    type: 'EDIT_PRODUCT_QTY',
     id,
-    qty: ++qty,
+    qty,
   });
   
   export const editProduct = (id, productData) => ({
     type: 'EDIT_PRODUCT',
     productData,
-  });
-
-  export const removeProduct = (id, qty) => ({
-      type: 'REMOVE_PRODUCT',
-      id,
-      qty: --qty,
   });
 
   export const deleteProduct = (id) => ({
@@ -47,5 +41,14 @@ export const addProduct = (id, qty) => ({
   export const loadProducts = (products) => ({
     type: 'LOAD_PRODUCTS',
     products,
+  });
+
+  export const closeMoreFields = () => ({
+    type: 'CLOSE_MORE_FIELDS',
+  });
+
+  export const loadProduct = (product) => ({
+    type: 'LOAD_PRODUCT',
+    product,
   });
   

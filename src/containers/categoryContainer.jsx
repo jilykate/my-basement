@@ -1,23 +1,17 @@
 import { connect } from 'react-redux';
 import * as LocalDB from '../database/localDB';
 import { 
-  addProduct, 
-  removeProduct, 
+  editProductQty,
   deleteProduct, 
   loadProducts,
 } from '../action'
 import CategoryDetail from '../views/categoryDetail';
 
 const getVisibleProducts = (products) => {
-    //TODO apply is_expired, is_deleted filter here.
-    console.log('===getVisibleProducts===');
-    console.log(products);
     return products;
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('====mapStateToProps===');
-  console.log(state);
   return {
     products: getVisibleProducts(state.products),
     categoryName: ownProps.categoryName,
@@ -25,11 +19,21 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    addProduct: (id, qty) => {
-      dispatch(addProduct(id, qty))
+    addProduct: (productObj, qty) => {
+      LocalDB.editProductQty(productObj, qty+1).then((product) => {
+        dispatch(editProductQty(product.id, product.qty))
+      });
     },
-    removeProduct: (id, qty) => dispatch(removeProduct(id,qty)),
-    deleteProduct: (id) => dispatch(deleteProduct(id)),
+    removeProduct: (productObj, qty) => {
+      LocalDB.editProductQty(productObj, Math.max(qty-1, 0)).then((product) => {
+        dispatch(editProductQty(product.id, product.qty))
+      })
+    },
+    deleteProduct: (productObj) => {
+      LocalDB.deleteProduct(productObj).then(product => {
+        dispatch(deleteProduct(product.id));
+      })
+    },
     loadProducts: (products) => dispatch(loadProducts(products)),
 });
 

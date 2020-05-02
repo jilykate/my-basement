@@ -1,15 +1,13 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { addCategory, removeCategory, loadCategories } from '../action'
 import CategoryList from '../views/categoryList';
 
 const getVisibleCategories = (categories) => {
-    //TODO apply is_expired, is_deleted filter here.
-    console.log(categories);
     return categories;
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     categories: getVisibleCategories(state.categories),
   }
@@ -21,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
     loadCategories: (categories) => dispatch(loadCategories(categories)),
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(CategoryList)
+)(CategoryList));

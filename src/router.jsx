@@ -11,35 +11,45 @@ import ProductContainer from './containers/productContainer';
 import AddNewProductFormContainer from './containers/addNewProductFormContainer';
 
 
-export default function MyBasementRouter() {
-    return (
-      <Router>
-        <div>
-          <Switch>
-            <Route exact path="/">
-              <CategoryListContainer />
-            </Route>
-            <Route path="/category/:categoryName" children={<CategoryDetailPage />} />
-            <Route path="/product/:productName" children={<ProductDetailPage />} />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+export default class MyBasementRouter extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
+    componentDidMount() {
+      console.log('====MyBasementRouter didmount====');
+    }
+
+    render() {
+      return (
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/" children={<CategoryListContainer />} />
+              <Route path="/category/:categoryName" children={<CategoryDetailPage />} />
+              <Route path="/product/:productId" children={<ProductDetailPage />} />
+            </Switch>
+          </div>
+        </Router>
+      );
+    }
+}
 
   function CategoryDetailPage() {
     let { categoryName } = useParams();
     let detailPageProps = {categoryName};
     return (
       <div>
-        <CategoryContainer {...detailPageProps} />
-        <AddNewProductFormContainer {...detailPageProps}/>
+        <CategoryContainer {...detailPageProps} key="categoryContainer"/>
+        <AddNewProductFormContainer {...detailPageProps} key="addnewproductscontainer"/>
       </div>
     );
   }
 
+  
+
   function ProductDetailPage() {
-    let { productName } = useParams();
-    let detailPageProps = {productName};
+    let { productId } = useParams();
+    let detailPageProps = {productId};
     return <ProductContainer {...detailPageProps} />;
   }

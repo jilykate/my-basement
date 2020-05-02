@@ -12,17 +12,21 @@ export default class AddNewProductForm extends React.Component {
         this.renderMoreFields = this.renderMoreFields.bind(this);
     }
 
+    componentDidMount() {
+        this.props.closeMoreFields();
+    }
+
     onSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
         console.log(data.get('productname'));
         const productData = {
             name: data.get('productname').toLowerCase(),
-            brand: data.get('brand'),
+            brand: data.get('brand') || '',
             expiredDate: data.get('expiredDate') || '',
             desc: data.get('desc') || '',
             qty: parseInt(data.get('qty'), 10) || 1,
-            category: this.props.categoryName,
+            category: this.props.categoryName || '',
         };
         this.props.addNewProduct(productData);
         event.target.reset();

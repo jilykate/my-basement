@@ -23,8 +23,6 @@ export default class CategoryDetail extends React.Component {
 
     renderProducts() {
         const {products} = this.props;
-        console.log('====renderProducts====');
-        console.log(products);
         return products.map(product => {
             return (
                 <li className="bs-item" key={product.id}>
@@ -38,20 +36,20 @@ export default class CategoryDetail extends React.Component {
                         <button 
                             type="button" 
                             className="bs-item-button"
-                            onClick={()=>this.props.addProduct(product.id, product.qty)}>
+                            onClick={()=>this.props.addProduct(product, product.qty)}>
                                 +
                             </button>
                         <button 
                             type="button"
                             className="bs-item-button"
-                            onClick={() => this.props.removeProduct(product.id, product.qty)}
+                            onClick={() => this.props.removeProduct(product, product.qty)}
                         >
                                 -
                         </button>
                         <button 
                             type="button" 
                             className="bs-item-button"
-                            onClick={()=>this.props.deleteProduct(product.id)}>
+                            onClick={()=>this.props.deleteProduct(product)}>
                                 <FontAwesomeIcon icon={faTrashAlt} />
                             </button>
                     </div>

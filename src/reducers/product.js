@@ -1,15 +1,7 @@
-const product = (state = [], action) => {
-    console.log('====product reducer===');
-    console.log(action.id, action.qty);
+const product = (state = {}, action) => {
     switch (action.type) {
-      case 'EDIT_PRODUCT':
-        return [
-          ...state,
-          {
-            id: action.id,
-            qty: action.qty,
-          }
-        ]
+      case 'LOAD_PRODUCT': 
+        return action.product;
       default:
         return state
     }
