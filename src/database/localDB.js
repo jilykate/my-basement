@@ -125,7 +125,6 @@ export const getProductByCategory = async (cateogry) => {
     products.forEach(product => {
         if (productsGroupByName.filter(item => item.name === product.name).length) {
             productsGroupByName.filter(item => item.name === product.name)[0].qty += product.qty;
-            console.log(productsGroupByName.filter(item => item.name === product.name)[0].qty);
         } else {
             productsGroupByName.push({name: product.name, qty: product.qty});
         }

@@ -18,7 +18,12 @@ const products = (state = [], action) => {
     case 'ADD_NEW_PRODUCT':
     {
         if (state.filter((product) => product.name === action.productData.name).length) {
-          return state;
+          return state.map(product => {
+            if (product.name === action.productData.name) {
+              product.qty += action.productData.qty;
+            }
+            return product;
+          });
         }
         return state.concat([action.productData]);
     }

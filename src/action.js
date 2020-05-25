@@ -56,4 +56,8 @@ import categories from "./initialState/categories";
     type: 'LOAD_PRODUCT_BY_UNIQUE_LABEL',
     products,
   });
+
+  export const resetFields = () => ({
+    type: 'RESET_FIELDS',
+  });
   

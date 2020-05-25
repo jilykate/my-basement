@@ -27,6 +27,13 @@ const addNewProductForm = (state = [], action) => {
                 isMoreFieldsVisible: state.isMoreFieldsVisible,
                 productName: action.products[Object.keys(action.products)[0]].length ? action.products[Object.keys(action.products)[0]][0].name : '',
             };
+
+        case 'RESET_FIELDS':
+            return {
+                categoryName: '',
+                isMoreFieldsVisible: false,
+                productName: '',
+            };
             
       default:
         return state;

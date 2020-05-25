@@ -14,7 +14,8 @@ export default class AddNewProductForm extends React.Component {
     }
 
     componentDidMount() {
-        this.props.closeMoreFields();
+        console.log('==== AddNewProductForm did mount ====');
+        this.props.resetFields();
     }
 
     onSubmit(event) {
@@ -78,12 +79,12 @@ export default class AddNewProductForm extends React.Component {
         console.log('====renderProductNameInput====', this.props);
         if (productName) {
             return (
-                <input type="text" name="productname" className="addProductInput" value={this.props.productName} readOnly/>
+                <input type="text" name="productname" className="addProductInput" value={this.props.productName} readOnly key="fixedProductNameInput"/>
             );
         }
 
         return (
-            <input type="text" name="productname" className="addProductInput" required/>
+            <input type="text" name="productname" className="addProductInput" required key="productNameInput"/>
         )
     }
 

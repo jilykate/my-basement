@@ -3,6 +3,7 @@ import {
   addNewProduct,
   toggleMoreFields,
   closeMoreFields,
+  resetFields,
 } from '../action'
 import AddNewProductForm from '../views/addNewProductForm';
 import * as LocalDB from '../database/localDB';
@@ -19,12 +20,12 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
     addNewProduct: (productData) => {
       LocalDB.addNewProduct(productData).then(productId => {
-        console.log('====addNewProduct====', Object.assign(productData, {id: productId}));
         dispatch(addNewProduct(Object.assign(productData, {id: productId})));
       });
     },
     closeMoreFields: () => dispatch(closeMoreFields()),
     toggleMoreFields: () => dispatch(toggleMoreFields()),
+    resetFields: () => dispatch(resetFields()),
 });
 
 export default connect(
