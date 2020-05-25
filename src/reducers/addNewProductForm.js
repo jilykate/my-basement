@@ -20,6 +20,13 @@ const addNewProductForm = (state = [], action) => {
                 isMoreFieldsVisible: state.isMoreFieldsVisible,
                 productName: action.product.name,
             };
+
+        case 'LOAD_PRODUCT_BY_UNIQUE_LABEL': 
+            return {
+                categoryName: action.products[Object.keys(action.products)[0]].length ? action.products[Object.keys(action.products)[0]][0].category : '',
+                isMoreFieldsVisible: state.isMoreFieldsVisible,
+                productName: action.products[Object.keys(action.products)[0]].length ? action.products[Object.keys(action.products)[0]][0].name : '',
+            };
             
       default:
         return state;
