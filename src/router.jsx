@@ -27,7 +27,7 @@ export default class MyBasementRouter extends React.Component {
             <Switch>
               <Route exact path="/" children={<CategoryListContainer />} />
               <Route path="/category/:categoryName" children={<CategoryDetailPage />} />
-              <Route path="/product/:productId" children={<ProductDetailPage />} />
+              <Route path="/product/:productName" children={<ProductDetailPage />} />
             </Switch>
           </div>
         </Router>
@@ -40,8 +40,8 @@ export default class MyBasementRouter extends React.Component {
     let detailPageProps = {categoryName};
     return (
       <div>
-        <CategoryContainer {...detailPageProps} key="categoryContainer"/>
-        <AddNewProductFormContainer {...detailPageProps} key="addnewproductscontainer"/>
+        <CategoryContainer {...detailPageProps} key="categoryContainer"/>       
+        <AddNewProductFormContainer {...detailPageProps} key="addnewproductscontainerInCategory"/>
       </div>
     );
   }
@@ -49,7 +49,12 @@ export default class MyBasementRouter extends React.Component {
   
 
   function ProductDetailPage() {
-    let { productId } = useParams();
-    let detailPageProps = {productId};
-    return <ProductContainer {...detailPageProps} />;
+    let { productName } = useParams();
+    let detailPageProps = {productName};
+    return (
+      <div>
+        <ProductContainer {...detailPageProps} />
+        <AddNewProductFormContainer {...detailPageProps} key="addnewproductscontainerInProduct"/>
+      </div>
+    );
   }

@@ -31,6 +31,10 @@
     padding: 5px 0;
 }
 
+.bs-add-product-form-label b {
+    flex-basis: 120px;
+}
+
 .bs-add-product-form-input {
     flex-basis: 100%;
 }

@@ -1,0 +1,7 @@
+.bs-product-detail-item {
+    display: flex;
+}
+
+.bs-product-detail-item b {
+    flex-basis: 120px;
+}

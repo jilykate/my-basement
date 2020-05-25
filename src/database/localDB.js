@@ -11,54 +11,45 @@ function onupgradeneeded (myBasementDB) {
     }
     if (!myBasementDB.objectStoreNames.contains('product')) {
         var productOS = myBasementDB.createObjectStore('product', {keyPath: 'id', autoIncrement: true});
-        productOS.createIndex('name', 'name', {unique: true});
+        productOS.createIndex('name', 'name', {unique: false});
         productOS.createIndex('brand', 'brand', {unique: false});
         productOS.createIndex('desc', 'desc', {unique: false});
         productOS.createIndex('expiredDate', 'expiredDate', {unique: false});
         productOS.createIndex('qty', 'qty', {unique: false});
         productOS.createIndex('category', 'category', {unique: false});
+        productOS.createIndex('uniqueLabel', 'uniqueLabel', {unique: true});
     }
 
     
     categoriesOS.put({
         name: 'Food',
         url_string: 'food',
+        icon_string: 'faBreadSlice',
     });
     categoriesOS.put({
         name: 'Drinks',
         url_string: 'drinks',
+        icon_string: 'faCocktail',
     });
     categoriesOS.put({
         name: 'Baby care',
         url_string: 'baby_care',
+        icon_string: 'faHandSparkles',
     });
     categoriesOS.put({
         name: 'Personal care',
         url_string: 'personal_care',
+        icon_string: 'faBath',
     });
     categoriesOS.put({
         name: 'House care',
         url_string: 'house_care',
+        icon_string: 'faBaby',
     });
     categoriesOS.put({
         name: 'Others',
         url_string: 'others',
-    });
-
-    productOS.put({
-        name: 'apple',
-        qty: 5,
-        expiredTime: '2020-01-01',
-        desc: 'this is an apple',
-        category: 'food',
-    });
-
-    productOS.put({
-        name: 'beer',
-        qty: 50,
-        expiredTime: '2020-03-01',
-        desc: 'this is a beer',
-        category: 'drinks',
+        icon_string: 'faCat',
     });
 };   
 
@@ -70,8 +61,21 @@ export const addNewProduct = async (data)=> {
     });
     let tx = dbRequest.transaction('product', 'readwrite');
     let store = tx.objectStore('product');
-    let productId = await store.put(data);
-    await tx.complete;
+    let productId;
+    const uniqueLabel = `${data.name}-${data.brand}-${data.expiredDate}`;
+
+    let product = await store.index('uniqueLabel').get(uniqueLabel);
+    if (!product) {
+        console.log('====this product is a new product====');
+        productId = await store.put(Object.assign(data, {uniqueLabel: uniqueLabel}));
+        await tx.complete;
+    } else {
+        console.log('====this product is an existing product ====', product.qty);
+        let updatedProduct = Object.assign(product, {qty: data.qty + 1});
+        await store.put(updatedProduct);
+        productId = product.id;
+    }
+
     dbRequest.close();
     return productId;
 }
@@ -116,8 +120,40 @@ export const getProductByCategory = async (cateogry) => {
     let store = tx.objectStore('product');
 
     let products = await store.index('category').getAll(cateogry);
+
+    let productsGroupByName = [];
+    products.forEach(product => {
+        if (productsGroupByName.filter(item => item.name === product.name).length) {
+            productsGroupByName.filter(item => item.name === product.name)[0].qty += product.qty;
+        } else {
+            productsGroupByName.push({name: product.name, qty: product.qty});
+        }
+    })
     dbRequest.close();
-    return products;
+    return productsGroupByName;
+}
+
+export const getProductByName = async (productName) => {
+    let dbRequest = await openDB('mybasement-db', 1, {
+        upgrade(db) { 
+            onupgradeneeded(db);
+        }
+    });
+
+    let tx = dbRequest.transaction('product', 'readwrite');
+    let store = tx.objectStore('product');
+
+    let products = await store.index('name').getAll(productName);
+
+    let productsGroupByUniqueLabel = {};
+    products.forEach(product => {
+        if (!productsGroupByUniqueLabel[product.uniqueLabel]) {
+            productsGroupByUniqueLabel[product.uniqueLabel] = [];
+        }
+        productsGroupByUniqueLabel[product.uniqueLabel].push(Object.assign({}, product));
+    })
+    dbRequest.close();
+    return productsGroupByUniqueLabel;
 }
 
 export const getProductById = async (id) => {
@@ -130,6 +166,7 @@ export const getProductById = async (id) => {
     let tx = dbRequest.transaction('product', 'readwrite');
     let store = tx.objectStore('product');
 
+    console.log('====getProductById====', id);
     let product = await store.get(parseInt(id, 10));
     dbRequest.close();
     return product;

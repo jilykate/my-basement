@@ -24,11 +24,19 @@ export default class CategoryList extends React.Component {
     }
 
     renderListItem(item) {
+        const categoryIcons = {
+            faBreadSlice: <FontAwesomeIcon icon={faBreadSlice} />,
+            faCocktail: <FontAwesomeIcon icon={faCocktail} />,
+            faHandSparkles: <FontAwesomeIcon icon={faHandSparkles} />,
+            faBath: <FontAwesomeIcon icon={faBath} />,
+            faBaby: <FontAwesomeIcon icon={faBaby} />,
+            faCat: <FontAwesomeIcon icon={faCat} />,
+        };
         return (
             <li key={"category_" + item.id}>
                 <Link to={"/category/" + item.url_string} className="bs-category">
                     <span className="bs-category-icon">
-                        <FontAwesomeIcon icon={item.icon_string} />
+                        {categoryIcons[item.icon_string]}
                     </span>
                     <span className="bs-category-name">{item.name}</span>
                 </Link>

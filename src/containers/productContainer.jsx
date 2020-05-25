@@ -2,22 +2,23 @@ import { connect } from 'react-redux'
 import { 
   editProduct,
   loadProduct,
+  loadProductsByUniqueLabel,
 } from '../action'
 import * as localDB from '../database/localDB';
 import ProductDetail from '../views/productDetail';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    product: state.product,
+    products: state.product.products,
     productName: ownProps.productName,
   }
 };
 
 const mapDispatchToProps = dispatch => ({
     editProduct: (id, productData) => dispatch(editProduct(id, productData)),
-    loadProduct: (id) => {
-      localDB.getProductById(id).then(product => {
-        dispatch(loadProduct(product));
+    loadProductByName: (productName) => {
+      localDB.getProductByName(productName).then(products => {
+        dispatch(loadProductsByUniqueLabel(products));
       })
     }
 });

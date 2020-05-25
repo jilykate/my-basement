@@ -23,11 +23,10 @@ export default class CategoryDetail extends React.Component {
 
     renderProducts() {
         const {products} = this.props;
-        return products.map(product => {
-            return (
-                <li className="bs-item" key={product.id}>
+        return products.map(product => (
+                <li className="bs-item" key={product.name}>
                     <span className="bs-item-name">
-                        <Link to={`/product/` + product.id} className="bs-item-link">
+                        <Link to={`/product/` + product.name} className="bs-item-link">
                             {product.name}
                         </Link>
                     </span>
@@ -55,7 +54,7 @@ export default class CategoryDetail extends React.Component {
                     </div>
                 </li>
             )
-        })
+        )
     }
 
     render() {

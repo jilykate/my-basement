@@ -51,4 +51,9 @@ import categories from "./initialState/categories";
     type: 'LOAD_PRODUCT',
     product,
   });
+
+  export const loadProductsByUniqueLabel = (products) => ({
+    type: 'LOAD_PRODUCT_BY_UNIQUE_LABEL',
+    products,
+  });
   

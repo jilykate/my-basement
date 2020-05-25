@@ -10,6 +10,7 @@ export default class AddNewProductForm extends React.Component {
         this.renderToggleButton = this.renderToggleButton.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.renderMoreFields = this.renderMoreFields.bind(this);
+        this.renderProductNameInput = this.renderProductNameInput.bind(this);
     }
 
     componentDidMount() {
@@ -36,13 +37,13 @@ export default class AddNewProductForm extends React.Component {
         const {isMoreFieldsVisible} = this.props;
         if (!!isMoreFieldsVisible) {
             return (
-                <button type="button" className="addMoreFieldsButton" onClick={this.props.toggleMoreFields}>
+                <button type="button" className="addMoreFieldsButton" onClick={this.props.toggleMoreFields} key="addMoreFieldsButtonUp">
                     <FontAwesomeIcon icon={faAngleUp} />
                 </button>
             );
         }
         return (
-            <button type="button" className="addMoreFieldsButton" onClick={this.props.toggleMoreFields}>
+            <button type="button" className="addMoreFieldsButton" onClick={this.props.toggleMoreFields} key="addMoreFieldsButtonDown">
                 <FontAwesomeIcon icon={faAngleDown} />
             </button>
         );
@@ -57,19 +58,33 @@ export default class AddNewProductForm extends React.Component {
         return (
             <div className="bs-add-product-form-extra">
                 <label className="bs-add-product-form-label brandField">
-                    brand: <input type="text" name="brand" className="bs-add-product-form-input"/>
+                    <b>brand:</b> <input type="text" name="brand" className="bs-add-product-form-input"/>
                 </label>
                 <label className="bs-add-product-form-label brandField">
-                    quantity: <input type="number" name="qty" className="bs-add-product-form-input" min='0'/>
+                    <b>quantity:</b> <input type="number" name="qty" className="bs-add-product-form-input" min='0'/>
                 </label>
                 <label className="bs-add-product-form-label expiredDateField">
-                    expiredDate: <input type="date" name="expiredDate" className="bs-add-product-form-input"/>
+                    <b>expiredDate:</b> <input type="date" name="expiredDate" className="bs-add-product-form-input"/>
                 </label>
                 <label className="bs-add-product-form-label descField">
-                    description: <input type="text" name="desc" className="bs-add-product-form-input"/>
+                    <b>description:</b> <input type="text" name="desc" className="bs-add-product-form-input"/>
                 </label>
             </div>
         );
+    }
+
+    renderProductNameInput() {
+        const {productName} = this.props;
+        console.log('====renderProductNameInput====', this.props);
+        if (productName) {
+            return (
+                <input type="text" name="productname" className="addProductInput" value={this.props.productName} readOnly/>
+            );
+        }
+
+        return (
+            <input type="text" name="productname" className="addProductInput" required/>
+        )
     }
 
     render() {
@@ -78,7 +93,7 @@ export default class AddNewProductForm extends React.Component {
                 <form 
                 className="bs-add-product-form"
                 onSubmit={this.onSubmit}>
-                    <input type="text" name="productname" className="addProductInput" required/>
+                    {this.renderProductNameInput()}
                     <button type="submit" className="addProductButton">
                         add
                     </button>

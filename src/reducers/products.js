@@ -20,15 +20,7 @@ const products = (state = [], action) => {
         if (state.filter((product) => product.name === action.productData.name).length) {
           return state;
         }
-
-        return state.concat([{
-          name: action.productData.name,
-          brand: action.productData.brand,
-          url_string: action.productData.name.replace(' ', '_'),
-          qty: action.productData.qty,
-          expiredDate: action.productData.expiredDate,
-          desc: action.productData.desc,
-        }]);
+        return state.concat([action.productData]);
     }
 
     case 'LOAD_PRODUCTS': {
